@@ -9,7 +9,7 @@ import styles from './style.module.css'
 import {useUser} from "../../../../../lib/hooks";
 
 export default function Index() {
-  const user = useUser({ redirectTo: '/', redirectIfFound: false })
+  const user = useUser({redirectTo: '/', redirectIfFound: false})
 
   const [article, setArticle] = useState()
   var router = useRouter()
@@ -23,7 +23,7 @@ export default function Index() {
         {
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2MGFlNzBkZjNjYWFkOTU5MjY4MTk1ZWEifQ.jb7oHCUnoVrvkP98UzrbBBqy1h8UfzKeGzt834Lf6rg`
+            'Authorization': `Bearer ${user?.token}`
           },
           method: 'GET'
         }
