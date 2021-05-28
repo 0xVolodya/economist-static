@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import React from "react";
 import {useEffect, useState} from "react";
+import Link from "next/link";
 
 import {useRouter} from "next/router";
 import {fetchURL} from "../../../../../lib/helpers/fetch";
@@ -10,7 +11,7 @@ import styles from './style.module.css'
 export default function Index() {
   const [article, setArticle] = useState()
   var router = useRouter()
-  const {id} = router.query
+  const {id, section} = router.query
 
   useEffect(async () => {
     try {
@@ -47,7 +48,11 @@ export default function Index() {
         </Head>
         <Header/>
         <div className={styles.container}>
-          <h1 onClick={onSectionClick}>{article.section}</h1>
+          <Link href={`/${section}`}>
+            <a>
+              <h1>{section}</h1>
+            </a>
+          </Link>
           <div className="subheadline">{article.subheadline}</div>
           <div className="headline">{article.headline}</div>
           <div>{article.description}</div>

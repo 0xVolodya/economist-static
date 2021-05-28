@@ -2,12 +2,12 @@
     margin: auto;
     width: 600px;
 }
-.container > h1{
+.container  h1{
     font-size: 2rem;
     margin-bottom: 1rem;
     cursor: pointer;
 }
-.container > h1:hover{
+.container h1:hover{
     color: gray;
 }
 

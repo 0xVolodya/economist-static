@@ -88,30 +88,37 @@ html {
     cursor: pointer;
 }
 
-.image-preview{
+.image-preview {
     max-width: 100%;
     max-height: 100%;
     margin-bottom: 1rem;
 }
 
-.subheadline{
+.subheadline {
     color: red;
     font-size: 0.8rem;
     margin-bottom: 0.5rem;
 }
 
-.headline{
+.headline {
     color: black;
     font-weight: 700;
     margin-bottom: 0.5rem;
 }
 
-.content-header{
+.content-header {
     margin-bottom: 1rem;
 }
 
-.content-header > h1{
+.content-header > h1 {
     font-weight: 700;
     font-size: 2rem;
 }
 
+a {
+    color: inherit; /* blue colors for links too */
+    text-decoration: inherit; /* no underline */
+}
+a:hover{
+    text-decoration: underline; /* no underline */
+}
