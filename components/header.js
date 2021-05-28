@@ -1,16 +1,26 @@
-import {faBars, faChevronDown} from '@fortawesome/free-solid-svg-icons'
+import {faBars} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {useState} from 'react'
+import React, {useState} from 'react'
 import Link from "next/link";
+import Button from "./button";
+import {useUser} from "../lib/hooks";
+
+const sections = ["Leaders", "Letters", "Briefing", "United States", "The Americas", "Asia", "China", "Middle East & Africa", "Europe", "Britain", "International", "Business", "Finance & economics", "Science & technology", "Books & arts", "Graphic detail", "Obituary", "Essay", "By Invitation", "Schools brief", "The World If", "Open Future", "Prospero", "The Economist Explains"]
 
 export default function Header() {
-  const sections = ["Leaders", "Letters", "Briefing", "United States", "The Americas", "Asia", "China", "Middle East & Africa", "Europe", "Britain", "International", "Business", "Finance & economics", "Science & technology", "Books & arts", "Graphic detail", "Obituary", "Essay", "By Invitation", "Schools brief", "The World If", "Open Future", "Prospero", "The Economist Explains"]
+  const user = useUser()
+
   const closeMenu = () => {
     triggerMenu(false)
   }
 
+  const handleLogout = () => {
+    localStorage.clear();
+    window.location = "/"
+  };
+
   const sectionsLi = sections.map((section, index) =>
-    <Link href={`/${section}`} className="list-item">
+    <Link key={index} href={`/${section}`} className="list-item">
       <a>
         <li onClick={closeMenu}>{section}</li>
       </a>
@@ -30,10 +40,31 @@ export default function Header() {
           <div className="menu-text">Menu</div>
         </div>
 
-        <div className="header-right">
+
+        {!user &&
+        <div style={{display: " flex", alignItems: "center"}}>
+          <Link href="/login" >
+            <a style={{marginRight: '1rem'}}>
+              <Button>Login Page</Button>
+            </a>
+          </Link>
+          <Link href="/signup">
+            <a>
+              <Button>Signup Page</Button>
+            </a>
+          </Link>
+        </div>
+        }
+
+        {user && <div style={{display: " flex", alignItems: "center"}}>
+          <div>{user.email}</div>
+          <Button onClick={handleLogout}>Sign out</Button>
+        </div>}
+
+        {/*<div className="header-right">
           <div>My account</div>
           <FontAwesomeIcon icon={faChevronDown}/>
-        </div>
+        </div>*/}
       </div>
     </div>
     {isMenuOpen && <ul className="opened-menu">

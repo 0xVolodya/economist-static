@@ -5,10 +5,12 @@ import Link from "next/link";
 
 import {useRouter} from "next/router";
 import {fetchURL} from "../../../../../lib/helpers/fetch";
-import Header from "../../../../../components/header";
 import styles from './style.module.css'
+import {useUser} from "../../../../../lib/hooks";
 
 export default function Index() {
+  const user = useUser({ redirectTo: '/', redirectIfFound: false })
+
   const [article, setArticle] = useState()
   var router = useRouter()
   const {id, section} = router.query
@@ -34,33 +36,27 @@ export default function Index() {
 
   }, [id])
 
-  const onSectionClick = () => {
-    router.push(`/${article.section}`)
-  }
-  if (!article) return <div>Loading</div>
+  if (!article || !user) return <div>Loading</div>
 
-  var textArray = article.bodyText.map(x => <p>{x}</p>)
+  var textArray = article.bodyText.map((x, index) => <p key={index}>{x}</p>)
   return (
     <>
-      <div>
-        <Head>
-          <title>Economist</title>
-        </Head>
-        <Header/>
-        <div className={styles.container}>
-          <Link href={`/${section}`}>
-            <a>
-              <h1>{section}</h1>
-            </a>
-          </Link>
-          <div className="subheadline">{article.subheadline}</div>
-          <div className="headline">{article.headline}</div>
-          <div>{article.description}</div>
-          <div className="image-preview-container">
-            <img className="image-preview" src={article.imageUrl} alt=""/>
-          </div>
-          {textArray}
+      <Head>
+        <title>Economist</title>
+      </Head>
+      <div className={styles.container}>
+        <Link href={`/${section}`}>
+          <a>
+            <h1>{section}</h1>
+          </a>
+        </Link>
+        <div className="subheadline">{article.subheadline}</div>
+        <div className="headline">{article.headline}</div>
+        <div>{article.description}</div>
+        <div className="image-preview-container">
+          <img className="image-preview" src={article.imageUrl} alt=""/>
         </div>
+        {textArray}
       </div>
     </>
   )

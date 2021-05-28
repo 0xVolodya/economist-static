@@ -23,6 +23,9 @@ html {
     align-content: center;
     cursor: pointer;
 }
+.menu:hover {
+    text-decoration: underline;
+}
 
 .menu-text {
     display: flex;

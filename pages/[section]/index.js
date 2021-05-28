@@ -5,9 +5,11 @@ import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import Link from "next/link";
 import {fetchURL} from "../../lib/helpers/fetch";
-import Header from "../../components/header";
+import {useUser} from "../../lib/hooks";
 
 export default function Index() {
+  const user = useUser({ redirectTo: '/', redirectIfFound: false })
+
   const [articles, setArticles] = useState()
   var router = useRouter()
   const {section} = router.query
@@ -60,18 +62,17 @@ export default function Index() {
 
   }
 
+  if (!articles || !user) return <div>Loading</div>
+
   return (
     <>
-      <div>
-        <Head>
-          <title>Economist</title>
-        </Head>
-        <Header/>
-        <div className="content-wrapper">
-          <div className="content-header"><h1>{section}</h1></div>
-          <div className="article-wrapper">
-            {articleComponent}
-          </div>
+      <Head>
+        <title>Economist</title>
+      </Head>
+      <div className="content-wrapper">
+        <div className="content-header"><h1>{section}</h1></div>
+        <div className="article-wrapper">
+          {articleComponent}
         </div>
       </div>
     </>
