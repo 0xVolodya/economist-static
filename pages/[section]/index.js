@@ -8,7 +8,7 @@ import {fetchURL} from "../../lib/helpers/fetch";
 import {useUser} from "../../lib/hooks";
 
 export default function Index() {
-  const user = useUser({ redirectTo: '/', redirectIfFound: false })
+  const user = useUser({redirectTo: '/', redirectIfFound: false})
 
   const [articles, setArticles] = useState()
   var router = useRouter()
@@ -17,7 +17,7 @@ export default function Index() {
 
   useEffect(async () => {
     try {
-      if (!section) return
+      if (!section || !user?.token) return
 
       const res = await fetch(
         fetchURL(`/articles?` + new URLSearchParams(queryParams)),
@@ -35,7 +35,9 @@ export default function Index() {
       console.error(e)
     }
 
-  }, [section])
+  }, [section, user?.token])
+
+  if (!articles || !user) return <div>Loading</div>
 
   var articleComponent
   const getUrl = article => {
@@ -62,7 +64,6 @@ export default function Index() {
 
   }
 
-  if (!articles || !user) return <div>Loading</div>
 
   return (
     <>

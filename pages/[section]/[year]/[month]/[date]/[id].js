@@ -17,7 +17,7 @@ export default function Index() {
 
   useEffect(async () => {
     try {
-      if (!id) return
+      if (!id || !user?.token) return
       const res = await fetch(
         fetchURL(`/articles/${id}`),
         {
@@ -34,11 +34,10 @@ export default function Index() {
       console.error(e)
     }
 
-  }, [id])
-
+  }, [id, user?.token])
   if (!article || !user) return <div>Loading</div>
 
-  var textArray = article.bodyText.map((x, index) => <p key={index}>{x}</p>)
+  var textArray = article?.bodyText?.map((x, index) => <p key={index}>{x}</p>)
   return (
     <>
       <Head>
