@@ -37,7 +37,8 @@ export default function Index() {
 
   }, [section, user?.token])
 
-  if (!articles || !user) return <div>Loading</div>
+  if (!user) return <div>Please Login to view all articles</div>
+  if (!articles) return <div>Loading</div>
 
   var articleComponent
   const getUrl = article => {

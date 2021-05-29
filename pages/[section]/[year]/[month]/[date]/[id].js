@@ -35,7 +35,8 @@ export default function Index() {
     }
 
   }, [id, user?.token])
-  if (!article || !user) return <div>Loading</div>
+  if (!user) return <div>Please Login to view article</div>
+  if (!article) return <div>Loading</div>
 
   var textArray = article?.bodyText?.map((x, index) => <p key={index}>{x}</p>)
   return (
