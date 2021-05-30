@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Button from './button'
+import Button from './button/button'
 
 const Form = ({ isLogin, errorMessage, onSubmit }) => (
   <form onSubmit={onSubmit}>

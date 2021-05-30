@@ -1,7 +1,8 @@
 import { useState } from 'react'
+
 import { useUser } from '../lib/hooks'
 import Form from '../components/form'
-import {fetchURL} from "../lib/helpers/fetch";
+import {fetchURL} from "../lib/fetch";
 
 const Login = () => {
   useUser({ redirectTo: '/', redirectIfFound: true })

@@ -13,10 +13,8 @@ export default function Index() {
         <title>Economist</title>
       </Head>
       <div className="content-wrapper">
-        <div className="article-wrapper">
           {!user &&<div>Please Login to view all articles</div>}
           {user &&<div>Click on the menu to see all sections</div>}
-        </div>
       </div>
     </>
   )

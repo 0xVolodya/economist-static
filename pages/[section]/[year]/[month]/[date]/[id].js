@@ -4,15 +4,15 @@ import {useEffect, useState} from "react";
 import Link from "next/link";
 
 import {useRouter} from "next/router";
-import {fetchURL} from "../../../../../lib/helpers/fetch";
+import {fetchURL} from "../../../../../lib/fetch";
 import styles from './style.module.css'
 import {useUser} from "../../../../../lib/hooks";
 
 export default function Index() {
-  const user = useUser({ redirectTo: '/', redirectIfFound: false })
+  const user = useUser({redirectTo: '/', redirectIfFound: false})
 
   const [article, setArticle] = useState()
-  var router = useRouter()
+  const router = useRouter()
   const {id, section} = router.query
 
   useEffect(async () => {
@@ -38,7 +38,13 @@ export default function Index() {
   if (!user) return <div>Please Login to view article</div>
   if (!article) return <div>Loading</div>
 
-  var textArray = article?.bodyText?.map((x, index) => <p key={index}>{x}</p>)
+  const formatDate = (string) => {
+    const options = {year: 'numeric', month: 'long', day: 'numeric'};
+
+    const date = new Date(string)
+    return date.toLocaleDateString("en-US", options)
+  }
+  const textArray = article?.bodyText?.map((x, index) => <p key={index}>{x}</p>)
   return (
     <>
       <Head>
@@ -52,8 +58,9 @@ export default function Index() {
         </Link>
         <div className="subheadline">{article.subheadline}</div>
         <div className="headline">{article.headline}</div>
+        <div>{formatDate(article.date)}</div>
         <div>{article.description}</div>
-        <div className="image-preview-container">
+        <div >
           <img className="image-preview" src={article.imageUrl} alt=""/>
         </div>
         {textArray}

@@ -2,10 +2,11 @@ import {faBars} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import React, {useState} from 'react'
 import Link from "next/link";
-import Button from "./button";
+
+import Button from "./button/button";
 import {useUser} from "../lib/hooks";
 
-const sections = ["Leaders", "Letters", "Briefing", "United States", "The Americas", "Asia", "China", "Middle East & Africa", "Europe", "Britain", "International", "Business", "Finance & economics", "Science & technology", "Books & arts", "Graphic detail", "Obituary", "Essay", "By Invitation", "Schools brief", "The World If", "Open Future", "Prospero"]
+const sections = ["Leaders", "Letters", "Briefing", "United States", "The Americas", "Asia", "China", "Middle East & Africa", "Europe", "Britain", "International", "Business", "Finance & economics", "Science & technology", "Books & arts", "Graphic detail", "Obituary", "Essay", "By Invitation", "Schools brief", "The World If", "Open Future", "Prospero", "The Economist explains"]
 
 export default function Header() {
   const user = useUser()
@@ -20,9 +21,9 @@ export default function Header() {
   };
 
   const sectionsLi = sections.map((section, index) =>
-    <Link key={index} href={`/${section}/page/1`} className="list-item">
-      <a>
-        <li onClick={closeMenu}>{section}</li>
+    <Link key={index} href={`/${section}/page/1`}>
+      <a >
+        <li onClick={closeMenu} className="list-item">{section}</li>
       </a>
     </Link>)
   const [isMenuOpen, triggerMenu] = useState(false)
@@ -61,10 +62,6 @@ export default function Header() {
           <Button onClick={handleLogout}>Sign out</Button>
         </div>}
 
-        {/*<div className="header-right">
-          <div>My account</div>
-          <FontAwesomeIcon icon={faChevronDown}/>
-        </div>*/}
       </div>
     </div>
     {isMenuOpen && <ul className="opened-menu">

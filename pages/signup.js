@@ -1,6 +1,7 @@
 import {useState} from 'react'
+
 import Form from '../components/form'
-import {fetchURL} from "../lib/helpers/fetch";
+import {fetchURL} from "../lib/fetch";
 import {useUser} from "../lib/hooks";
 
 const Signup = () => {
