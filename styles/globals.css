@@ -74,7 +74,9 @@ html {
 
 .content-wrapper {
     padding: 0 2rem;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .article-wrapper {

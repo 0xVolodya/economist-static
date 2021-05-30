@@ -1,0 +1,27 @@
+.pagination-container {
+    display: flex;
+}
+
+.pagination {
+    display: flex;
+    margin: 3rem auto 3rem;
+}
+
+.pagination li {
+    border: .0625rem solid transparent;
+    border-radius: 1rem;
+    padding: .375rem .5rem;
+    margin: 0 0.5rem;
+}
+
+.pagination li:hover {
+    background-color: #f2f2f2;;
+    color: #142680;
+    cursor: pointer;
+}
+
+
+.pagination .pagination-active {
+    border: .0625rem solid #333;
+}
+

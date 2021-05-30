@@ -9,7 +9,7 @@ import styles from './style.module.css'
 import {useUser} from "../../../../../lib/hooks";
 
 export default function Index() {
-  const user = useUser({redirectTo: '/', redirectIfFound: false})
+  const user = useUser({ redirectTo: '/', redirectIfFound: false })
 
   const [article, setArticle] = useState()
   var router = useRouter()
@@ -45,7 +45,7 @@ export default function Index() {
         <title>Economist</title>
       </Head>
       <div className={styles.container}>
-        <Link href={`/${section}`}>
+        <Link href={`/${section}/page/1`}>
           <a>
             <h1>{section}</h1>
           </a>

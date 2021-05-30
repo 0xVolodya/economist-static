@@ -5,7 +5,7 @@ import Link from "next/link";
 import Button from "./button";
 import {useUser} from "../lib/hooks";
 
-const sections = ["Leaders", "Letters", "Briefing", "United States", "The Americas", "Asia", "China", "Middle East & Africa", "Europe", "Britain", "International", "Business", "Finance & economics", "Science & technology", "Books & arts", "Graphic detail", "Obituary", "Essay", "By Invitation", "Schools brief", "The World If", "Open Future", "Prospero", "The Economist Explains"]
+const sections = ["Leaders", "Letters", "Briefing", "United States", "The Americas", "Asia", "China", "Middle East & Africa", "Europe", "Britain", "International", "Business", "Finance & economics", "Science & technology", "Books & arts", "Graphic detail", "Obituary", "Essay", "By Invitation", "Schools brief", "The World If", "Open Future", "Prospero"]
 
 export default function Header() {
   const user = useUser()
@@ -20,7 +20,7 @@ export default function Header() {
   };
 
   const sectionsLi = sections.map((section, index) =>
-    <Link key={index} href={`/${section}`} className="list-item">
+    <Link key={index} href={`/${section}/page/1`} className="list-item">
       <a>
         <li onClick={closeMenu}>{section}</li>
       </a>
@@ -57,7 +57,7 @@ export default function Header() {
         }
 
         {user && <div style={{display: " flex", alignItems: "center"}}>
-          <div>{user.email}</div>
+          <div>{user.user.email}</div>
           <Button onClick={handleLogout}>Sign out</Button>
         </div>}
 
